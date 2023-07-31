@@ -1,7 +1,9 @@
 
 using agenda_api.Models;
 using agenda_api.Repositories;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Net;
 
 namespace agenda_api.Controllers;
 
@@ -17,12 +19,13 @@ public class AgendaController : ControllerBase
     {
         AgendaRepository agendaRepository = new AgendaRepository();
         var resultado = await agendaRepository.Adicionar(agenda);
-        // if (resultado == null) {
-        //     return Ok("Horário já está ocupado!");
-        // }
+        if (resultado == null) {
+            return Ok("Horário já está ocupado!");
+        }
         return Ok(agenda);
     }
 
+    [Authorize]
     [HttpGet]
     public async Task<ActionResult<dynamic>> Agenda()
     {

@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/home/srvieira/Documentos/Users/rsv-hdd/Documentos/Development/Projetos/2023/Tests/DotNetCore/agenda-api/agenda-api.csproj": {}
+    "C:\\Users\\rafael.santos\\Documents\\Development\\C#\\Dotnet\\agenda-api\\agenda-api.csproj": {}
   },
   "projects": {
-    "/home/srvieira/Documentos/Users/rsv-hdd/Documentos/Development/Projetos/2023/Tests/DotNetCore/agenda-api/agenda-api.csproj": {
+    "C:\\Users\\rafael.santos\\Documents\\Development\\C#\\Dotnet\\agenda-api\\agenda-api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/srvieira/Documentos/Users/rsv-hdd/Documentos/Development/Projetos/2023/Tests/DotNetCore/agenda-api/agenda-api.csproj",
+        "projectUniqueName": "C:\\Users\\rafael.santos\\Documents\\Development\\C#\\Dotnet\\agenda-api\\agenda-api.csproj",
         "projectName": "agenda-api",
-        "projectPath": "/home/srvieira/Documentos/Users/rsv-hdd/Documentos/Development/Projetos/2023/Tests/DotNetCore/agenda-api/agenda-api.csproj",
-        "packagesPath": "/home/srvieira/.nuget/packages/",
-        "outputPath": "/home/srvieira/Documentos/Users/rsv-hdd/Documentos/Development/Projetos/2023/Tests/DotNetCore/agenda-api/obj/",
+        "projectPath": "C:\\Users\\rafael.santos\\Documents\\Development\\C#\\Dotnet\\agenda-api\\agenda-api.csproj",
+        "packagesPath": "C:\\Users\\rafael.santos\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\rafael.santos\\Documents\\Development\\C#\\Dotnet\\agenda-api\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/home/srvieira/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\rafael.santos\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
@@ -38,9 +38,29 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
+            "JWT": {
+              "target": "Package",
+              "version": "[10.0.2, )"
+            },
+            "Microsoft.AspNetCore.Authentication.Core": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[6.0.15, )"
+            },
             "Microsoft.Data.SqlClient": {
               "target": "Package",
               "version": "[5.1.1, )"
+            },
+            "Microsoft.IdentityModel.Tokens": {
+              "target": "Package",
+              "version": "[6.27.0, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.2, )"
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
@@ -65,7 +85,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/lib64/dotnet/sdk/6.0.120/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.120\\RuntimeIdentifierGraph.json"
         }
       }
     }

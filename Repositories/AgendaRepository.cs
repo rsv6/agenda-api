@@ -3,6 +3,8 @@ using agenda_api.Connections;
 using agenda_api.Models;
 using agenda_api.Repositories.Interfaces;
 using Microsoft.Data.SqlClient;
+using System.Net;
+using System.Net.Http;
 
 namespace agenda_api.Repositories;
 
@@ -34,10 +36,10 @@ public class AgendaRepository : IAgendaRepository
 
                     Agenda res = listaAgenda.FirstOrDefault(x => x.HorarioInicial == horarioInicial);
 
-                    if (res.HorarioInicial == horarioInicial || res.HorarioFinal == horarioFinal) {
-                        Console.WriteLine("Horario já está ocupado!");
-                        return null;
-                    } else {
+                    // if (res.HorarioInicial == horarioInicial || res.HorarioFinal == horarioFinal) {
+                    //     Console.WriteLine("Horario já está ocupado!");
+                    //     return null;
+                    // } else {
                         // Add parameters to prevent SQL injection
                         command.CommandText = "INSERT INTO Agenda (sala, horarioInicial, horarioFinal, status) VALUES (@sala, @horarioInicial, @horarioFinal, @status)";
                         command.Parameters.AddWithValue("@sala", sala);
@@ -47,7 +49,7 @@ public class AgendaRepository : IAgendaRepository
 
                         int rowsAffected = command.ExecuteNonQuery();
                         Console.WriteLine($"Rows affected: {rowsAffected}");
-                    }
+                    // }
                 }
                 connection.Close();
             }
