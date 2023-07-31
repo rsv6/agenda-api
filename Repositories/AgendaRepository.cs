@@ -27,35 +27,27 @@ public class AgendaRepository : IAgendaRepository
             {
                 connection.Open();
 
-                using (SqlCommand command = new SqlCommand(
-                    "INSERT INTO Agenda (sala, horarioInicial, horarioFinal, status) VALUES (@sala, @horarioInicial, @horarioFinal, @status)",
-                    connection
-                ))
+                using (SqlCommand command = new SqlCommand())
                 {
+                    command.Connection = connection;
+                    List<Agenda> listaAgenda = await this.BuscarTodasAgendas();
 
-                    // Add parameters to prevent SQL injection
-                    command.Parameters.AddWithValue("@sala", sala);
-                    command.Parameters.AddWithValue("@horarioInicial", horarioInicial);
-                    command.Parameters.AddWithValue("@horarioFinal", horarioFinal);
-                    command.Parameters.AddWithValue("@status", status);
+                    Agenda res = listaAgenda.FirstOrDefault(x => x.HorarioInicial == horarioInicial);
 
-                    int rowsAffected = command.ExecuteNonQuery();
-                    Console.WriteLine($"Rows affected: {rowsAffected}");
+                    if (res.HorarioInicial == horarioInicial || res.HorarioFinal == horarioFinal) {
+                        Console.WriteLine("Horario já está ocupado!");
+                        return null;
+                    } else {
+                        // Add parameters to prevent SQL injection
+                        command.CommandText = "INSERT INTO Agenda (sala, horarioInicial, horarioFinal, status) VALUES (@sala, @horarioInicial, @horarioFinal, @status)";
+                        command.Parameters.AddWithValue("@sala", sala);
+                        command.Parameters.AddWithValue("@horarioInicial", horarioInicial);
+                        command.Parameters.AddWithValue("@horarioFinal", horarioFinal);
+                        command.Parameters.AddWithValue("@status", status);
 
-                    // command.CommandTimeout = 60;
-                    // command.Connection = connection;
-                    // command.CommandText = $"INSERT INTO Agenda (sala, horarioInicial, horarioFinal, status) VALUES ('" + agenda.Sala + "', '" + agenda.HorarioInicial + "', '" +agenda.HorarioFinal + "', '" + agenda.Status + "')";
-                    // command.ExecuteNonQuery();
-
-
-                    // command.CommandText = "SELECT TOP(1) ID FROM Agenda ORDER BY id DESC";
-                    // SqlDataReader reader = command.Execute
-
-                    // while (reader.Read())
-                    // {
-                    //     resultado = reader;
-                    //     Console.WriteLine(resultado);
-                    // }
+                        int rowsAffected = command.ExecuteNonQuery();
+                        Console.WriteLine($"Rows affected: {rowsAffected}");
+                    }
                 }
                 connection.Close();
             }

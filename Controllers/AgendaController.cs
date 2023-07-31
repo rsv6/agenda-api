@@ -17,7 +17,9 @@ public class AgendaController : ControllerBase
     {
         AgendaRepository agendaRepository = new AgendaRepository();
         var resultado = await agendaRepository.Adicionar(agenda);
-        Console.WriteLine($"Resultado {resultado}");
+        // if (resultado == null) {
+        //     return Ok("Horário já está ocupado!");
+        // }
         return Ok(agenda);
     }
 
