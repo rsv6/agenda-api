@@ -16,16 +16,36 @@ public class AgendaRepository : IAgendaRepository
         {
             Agenda novaAgenda = new();
             // dynamic? resultado;
+
+            string sala = agenda.Sala;
+            string horarioInicial = agenda.HorarioInicial;
+            string horarioFinal = agenda.HorarioFinal;
+            Enums.StatusAgenda status = agenda.Status;
+
+
             using (SqlConnection connection = new SqlConnection(ConnexaoString))
             {
                 connection.Open();
 
-                using (SqlCommand command = new SqlCommand())
+                using (SqlCommand command = new SqlCommand(
+                    "INSERT INTO Agenda (sala, horarioInicial, horarioFinal, status) VALUES (@sala, @horarioInicial, @horarioFinal, @status)",
+                    connection
+                ))
                 {
-                    command.CommandTimeout = 60;
-                    command.Connection = connection;
-                    command.CommandText = $"INSERT INTO Agenda (sala, horarioInicial, horarioFinal, status) VALUES ('" + agenda.Sala + "', '" + agenda.HorarioInicial + "', '" +agenda.HorarioFinal + "', '" + agenda.Status + "')";
-                    command.ExecuteNonQuery();
+
+                    // Add parameters to prevent SQL injection
+                    command.Parameters.AddWithValue("@sala", sala);
+                    command.Parameters.AddWithValue("@horarioInicial", horarioInicial);
+                    command.Parameters.AddWithValue("@horarioFinal", horarioFinal);
+                    command.Parameters.AddWithValue("@status", status);
+
+                    int rowsAffected = command.ExecuteNonQuery();
+                    Console.WriteLine($"Rows affected: {rowsAffected}");
+
+                    // command.CommandTimeout = 60;
+                    // command.Connection = connection;
+                    // command.CommandText = $"INSERT INTO Agenda (sala, horarioInicial, horarioFinal, status) VALUES ('" + agenda.Sala + "', '" + agenda.HorarioInicial + "', '" +agenda.HorarioFinal + "', '" + agenda.Status + "')";
+                    // command.ExecuteNonQuery();
 
 
                     // command.CommandText = "SELECT TOP(1) ID FROM Agenda ORDER BY id DESC";
@@ -44,6 +64,7 @@ public class AgendaRepository : IAgendaRepository
         }
         catch (System.Exception ex)
         {
+            Console.WriteLine($"Error: {ex.Message}");
             return null;
         }
     }
