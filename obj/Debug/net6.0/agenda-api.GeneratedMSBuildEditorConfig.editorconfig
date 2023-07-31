@@ -1,0 +1,16 @@
+is_global = true
+build_property.TargetFramework = net6.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = agenda_api
+build_property.RootNamespace = agenda_api
+build_property.ProjectDir = /home/srvieira/Documentos/Users/rsv-hdd/Documentos/Development/Projetos/2023/Tests/DotNetCore/agenda-api/
+build_property.RazorLangVersion = 6.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = /home/srvieira/Documentos/Users/rsv-hdd/Documentos/Development/Projetos/2023/Tests/DotNetCore/agenda-api
+build_property._RazorSourceGeneratorDebug = 
